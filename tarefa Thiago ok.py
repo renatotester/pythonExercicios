@@ -1,3 +1,20 @@
+#criar uma api que calcule a idade
+# -> POST /api/v1/calcule
+#"nome": <string>,
+#			"data_nascimento": <string>			
+#		}
+#		- validar entradas
+#		- todos os parametros sao obrigatorios
+#		- retorno:
+#			{
+#				"msg": "<nome> sua idade é <idade>"	
+#			}
+#					
+#-> /status
+#- sempre retorna 200 e nao retorna conteudo
+#	curl -x POST 127.0.0.1:5000/api/v1/calcule -d '{"nome":"thiago","data_nascimento":"22/05/1985"}'
+
+#importando datetime
 from datetime import datetime
 
 def calcular_idade(nome, data_nascimento):
