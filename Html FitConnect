@@ -1,0 +1,102 @@
+
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #003366;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem-vindo ao FitConnect</h1>
+    
+    <h2>Criar Perfil</h2>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label for="objetivo">Objetivo:</label>
+        <input type="text" name="objetivo" required>
+        <br>
+        <input type="submit" value="Criar Perfil">
+    </form>
+    
+    <h2>Perfis de Usuário</h2>
+    <ul>
+        <!-- Loop para exibir perfis de usuário -->
+        {% for profile in user_profiles %}
+            <li>{{ profile.nome }} - Objetivo: {{ profile.objetivo }}</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('criar_perfil') }}">Criar um novo perfil</a>
+</body>
+</html>
+```
+
+Este código HTML combina o conteúdo das páginas 'criar_perfil' e 'perfis' em uma única página. Lembre-se de que, em uma aplicação real, você deve utilizar um framework web como Flask para criar rotas e gerenciar o aplicativo de forma mais organizada. A estrutura de uma única página é mais apropriada para páginas simples e estáticas.
