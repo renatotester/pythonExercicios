@@ -1,0 +1,186 @@
+Claro! Aqui está o código completo com os modelos HTML e a estilização CSS com a paleta de cores personalizadas:
+
+1. **Código Python (`app.py`):**
+
+```python
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(__name__)
+
+# Lista de perfis de usuário (em uma aplicação real, você usaria um banco de dados)
+user_profiles = []
+
+class UserProfile:
+    def __init__(self, nome, objetivo):
+        self.nome = nome
+        self.objetivo = objetivo
+        self.atividades = []
+
+# Rota para a página inicial
+@app.route('/')
+def home():
+    return "Bem-vindo ao FitConnect!"
+
+# Rota para criar um novo perfil de usuário
+@app.route('/criar_perfil', methods=['GET', 'POST'])
+def criar_perfil():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        objetivo = request.form['objetivo']
+        profile = UserProfile(nome, objetivo)
+        user_profiles.append(profile)
+        return redirect(url_for('feed'))
+    return render_template('criar_perfil.html')
+
+# Rota para exibir perfis de usuário
+@app.route('/perfis')
+def perfis():
+    return render_template('perfis.html', user_profiles=user_profiles)
+
+# Rota para exibir o feed de atividades
+@app.route('/feed')
+def feed():
+    return render_template('feed.html', user_profiles=user_profiles)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+2. **`templates/criar_perfil.html`:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criar Perfil - FitConnect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Criar Perfil</h1>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label for="objetivo">Objetivo:</label>
+        <input type="text" name="objetivo" required>
+        <br>
+        <input type="submit" value="Criar Perfil">
+    </form>
+</body>
+</html>
+```
+
+3. **`templates/perfis.html`:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfis - FitConnect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Perfis de Usuário</h1>
+    <ul>
+        {% for profile in user_profiles %}
+            <li>{{ profile.nome }} - Objetivo: {{ profile.objetivo }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('criar_perfil') }}">Criar um novo perfil</a>
+</body>
+</html>
+```
+
+4. **`templates/feed.html`:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feed de Atividades - FitConnect</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Feed de Atividades</h1>
+    <ul>
+        {% for profile in user_profiles %}
+            <li>{{ profile.nome }} - Objetivo: {{ profile.objetivo }}</li>
+            <ul>
+                {% for activity in profile.atividades %}
+                    <li>{{ activity }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('criar_perfil') }}">Criar um novo perfil</a>
+</body>
+</html>
+```
+
+5. **`static/style.css` (Arquivo de estilos CSS):**
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #003366;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
