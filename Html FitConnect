@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcademiaConnect - Sua Rede Social de Fitness</title>
+    <title>FitConnect - Sua Rede Social de Fitness</title>
     <style>
         /* Reset de estilos para garantir consistência entre navegadores */
         * {
@@ -183,7 +183,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2023 AcademiaConnect. Todos os direitos reservados.</p>
+        <p>&copy; 2023 FitConnect. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
