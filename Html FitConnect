@@ -50,7 +50,7 @@
 
         /* Estilos do banner principal */
         #banner {
-            background-image: url('imagem_de_banner.jpg');
+            background-image: url('https://www.gettyimages.com.br/fotos/academia-de-gin%C3%A1stica.jpg');
             background-size: cover;
             background-position: center;
             height: 600px;
